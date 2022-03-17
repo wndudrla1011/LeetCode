@@ -1,7 +1,13 @@
 class Solution(object):
     def isPalindrome(self, s):
-        s = s.lower()
+        strs = collections.deque()
 
-        s = re.sub('[^a-z0-9]', '', s)
+        for char in s:
+            if char.isalnum():
+                strs.append(char.lower())
 
-        return s == s[::-1]
+        while len(strs) > 1:
+            if strs.popleft() != strs.pop():
+                return False
+
+        return True
