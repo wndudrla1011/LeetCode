@@ -1,4 +1,4 @@
-​# solution 1
+# solution 1
 class Solution:
     def reverseString(self, s):
         s.reverse()
