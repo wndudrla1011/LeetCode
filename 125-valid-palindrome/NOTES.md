@@ -1,5 +1,6 @@
 # solution 1
-​class Solution(object):
+
+​class Solution(object):&nbsp;
     def isPalindrome(self, s):
         s = s.lower()
 
@@ -8,6 +9,7 @@
         return s == s[::-1]
         
 # solution 2
+
 class Solution(object):
     def isPalindrome(self, s):
         subject = []
