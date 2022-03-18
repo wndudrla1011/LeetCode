@@ -1,4 +1,3 @@
-# solution 1
-class Solution:
-    def reverseString(self, s):
-        s.reverse()
+# reverse 함수
+    * list의 모든 요소 순서를 뒤집음
+    
