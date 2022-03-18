@@ -5,7 +5,7 @@
 # solution 1
 
 
-class Solution(object):
+ class Solution(object):
     def mostCommonWord(self, paragraph, banned):
         """
         :type paragraph: str
