@@ -8,9 +8,6 @@ class Solution(object):
         result = []
 
         for i in range(len(nums)):
-            for j in range(i + 1, len(nums)):
-                if nums[i] + nums[j] == target:
-                    result.append(i)
-                    result.append(j)
-
-        return result
+            if nums[i] in result:
+                return [result.index(nums[i]), i]
+            result.append(target - nums[i])
