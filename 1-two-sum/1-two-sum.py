@@ -5,9 +5,8 @@ class Solution(object):
         :type target: int
         :rtype: List[int]
         """
-        result = []
+        for i, n in enumerate(nums):
+            complement = target - n
 
-        for i in range(len(nums)):
-            if nums[i] in result:
-                return [result.index(nums[i]), i]
-            result.append(target - nums[i])
+            if complement in nums[i + 1:]:
+                return [nums.index(n), nums[i+1:].index(complement) + (i + 1)]
