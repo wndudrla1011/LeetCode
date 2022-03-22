@@ -5,9 +5,9 @@ class Solution(object):
         :type target: int
         :rtype: List[int]
         """
-        nums_map = {}
+        result = []
 
-        for i, num in enumerate(nums):
-            if target - num in nums_map:
-                return [nums_map[target - num], i]
-            nums_map[num] = i
+        for i in range(len(nums)):
+            if nums[i] in result:
+                return [result.index(nums[i]), i]
+            result.append(target - nums[i])
