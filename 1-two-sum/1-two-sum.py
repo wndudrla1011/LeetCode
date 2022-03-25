@@ -5,9 +5,12 @@ class Solution(object):
         :type target: int
         :rtype: List[int]
         """
-        result = []
+        result = {}
 
-        for i in range(len(nums)):
-            if nums[i] in result:
-                return [result.index(nums[i]), i]
-            result.append(target - nums[i])
+        for i, v in enumerate(nums):
+            result[v] = i
+
+        for i, v in enumerate(nums):
+            if target - v in nums[i+1:]:
+                return [i, result[target - v]]
+                
