@@ -4,5 +4,13 @@ class Solution(object):
         :type x: int
         :rtype: bool
         """
-        x = str(x)
-        return x == x[::-1]
+        x = list(str(x))
+        left, right = 0, len(x) - 1
+
+        while left < right:
+            if x[left] != x[right]:
+                return False
+            left += 1
+            right -= 1
+
+        return True
