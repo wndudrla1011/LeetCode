@@ -4,18 +4,21 @@ class Solution(object):
         :type nums: List[int]
         :rtype: List[int]
         """
-        result = []
+        p = 1
+        left_list, right_list, result = [], [], []
+
+        for num in nums:
+            left_list.append(p)
+            p = p * num
 
         p = 1
-        # left multiple
+        for num in nums[::-1]:
+            right_list.append(p)
+            p = p * num
+
+        right_list.reverse()
+
         for i in range(len(nums)):
-            result.append(p)
-            p *= nums[i]
-
-        p = 1
-        # right multiple
-        for i in range(len(nums)-1, -1, -1):
-            result[i] = result[i] * p
-            p = p * nums[i]
+            result.append(left_list[i] * right_list[i])
 
         return result
