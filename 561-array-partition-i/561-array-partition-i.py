@@ -4,13 +4,12 @@ class Solution(object):
         :type nums: List[int]
         :rtype: int
         """
-        nums.sort()
+        pair, n = 2, 0
         sum = 0
+        nums.sort()
 
-        for i, v2 in enumerate(nums):
-            if i % 2 == 0:
-                v1 = v2
-            else:
-                sum += min(v1, v2)
+        while pair * n != len(nums):
+            sum += min(nums[pair * n], nums[pair * n + 1])
+            n += 1
                 
         return sum
