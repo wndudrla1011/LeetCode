@@ -4,10 +4,8 @@ class Solution(object):
         type s : str
         type return: bool
         """
-        result = ""
+        s = s.lower()
 
-        for char in s:
-            if char.isalnum():
-                result += char.lower()
+        s = re.sub('[^a-z0-9]', '', s)
 
-        return result == result[::-1]
+        return s == s[::-1]
