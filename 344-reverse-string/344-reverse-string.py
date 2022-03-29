@@ -6,15 +6,8 @@ class Solution:
         """
         left, right = 0, len(s) - 1
 
-
-        def swap(left, right):
-            tmp = s[left]
-            s[left] = s[right]
-            s[right] = tmp
-
-
         while left < right:
-            swap(left, right)
+            s[left], s[right] = s[right], s[left]
             left += 1
             right -= 1
         
