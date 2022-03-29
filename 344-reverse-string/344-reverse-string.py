@@ -1,8 +1,20 @@
 class Solution:
     def reverseString(self, s):
-        left, right = 0, len(s)-1
-        while left < right:
-            s[left], s[right] = s[right], s[left]
+        """
+        type s : List[str]
+        type return : List[str]
+        """
+        left, right = 0, len(s) - 1
 
+
+        def swap(left, right):
+            tmp = s[left]
+            s[left] = s[right]
+            s[right] = tmp
+
+
+        while left < right:
+            swap(left, right)
             left += 1
             right -= 1
+        
