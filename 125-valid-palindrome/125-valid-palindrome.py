@@ -1,13 +1,13 @@
 class Solution(object):
     def isPalindrome(self, s):
-        strs = collections.deque()
+        """
+        type s : str
+        type return: bool
+        """
+        result = ""
 
         for char in s:
             if char.isalnum():
-                strs.append(char.lower())
+                result += char.lower()
 
-        while len(strs) > 1:
-            if strs.popleft() != strs.pop():
-                return False
-
-        return True
+        return result == result[::-1]
