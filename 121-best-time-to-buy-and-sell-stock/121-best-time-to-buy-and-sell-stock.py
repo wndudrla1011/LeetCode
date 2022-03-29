@@ -4,15 +4,11 @@ class Solution(object):
         :type prices: List[int]
         :rtype: int
         """
-        minPrice = sys.maxsize
+        min_price = sys.maxsize
         profit = 0
 
-        for i, price in enumerate(prices):
-            if minPrice > price:
-                minPrice = price
+        for price in prices:
+            min_price = min(min_price, price)
+            profit = max(profit, price - min_price)
 
-            if 0 < i < len(prices):
-                if prices[i] - minPrice > profit:
-                    profit = prices[i] - minPrice
-                    
         return profit
