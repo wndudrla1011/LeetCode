@@ -9,18 +9,18 @@ class Solution(object):
         :type head: ListNode
         :rtype: bool
         """
-        q = collections.deque()
+        rev = None
+        slow = fast = head
 
-        if not head:
-            return True
+        # create Reverse Linked List with Runner
+        while fast and fast.next:
+            fast = fast.next.next
+            rev, rev.next, slow = slow, rev, slow.next
+        if fast:
+            slow = slow.next
 
-        node = head
-        while node is not None:
-            q.append(node.val)
-            node = node.next
+        # make sure the palindrome is right
+        while rev and rev.val == slow.val:
+            slow, rev = slow.next, rev.next
 
-        while len(q) > 1:
-            if q.popleft() != q.pop():
-                return False
-
-        return True
+        return not rev
