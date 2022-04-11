@@ -15,12 +15,10 @@ class Solution(object):
             return True
 
         node = head
-        # 리스트 변환
         while node is not None:
             q.append(node.val)
             node = node.next
 
-        # 팰린드롬 판별
         while len(q) > 1:
             if q.popleft() != q.pop():
                 return False
