@@ -9,7 +9,7 @@ class Solution(object):
         :type head: ListNode
         :rtype: bool
         """
-        q = []
+        q = collections.deque()
 
         if not head:
             return True
@@ -22,7 +22,7 @@ class Solution(object):
 
         # 팰린드롬 판별
         while len(q) > 1:
-            if q.pop(0) != q.pop():
+            if q.popleft() != q.pop():
                 return False
 
         return True
