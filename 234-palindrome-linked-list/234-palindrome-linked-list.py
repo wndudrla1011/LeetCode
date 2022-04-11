@@ -9,18 +9,21 @@ class Solution(object):
         :type head: ListNode
         :rtype: bool
         """
-        rev = None
-        slow = fast = head
+        q = []
 
-        # create Reverse Linked List with Runner
-        while fast and fast.next:
-            fast = fast.next.next
-            rev, rev.next, slow = slow, rev, slow.next
-        if fast:
-            slow = slow.next
+        if not head:
+            return True
 
-        # make sure the palindrome is right
-        while rev and rev.val == slow.val:
-            slow, rev = slow.next, rev.next
+        node = head
+        # transform to list
+        while node is not None:
+            # print(node.val)
+            q.append(node.val)
+            node = node.next
 
-        return not rev
+        # determine whether it is a palindrome or not
+        while len(q) > 1:
+            if q.pop(0) != q.pop():
+                return False
+
+        return True
