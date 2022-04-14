@@ -9,31 +9,16 @@ class Solution(object):
         :type head: ListNode
         :rtype: ListNode
         """
-        node, odd, even = head, ListNode(None), ListNode(None)
-        odd_list, even_list = odd, even
+        if head is None:
+            return None
 
-        number, cnt = 1, 0
-        while node:
-            if number % 2 != 0:
-                odd.next, next = node, node.next
-                odd = odd.next
-                cnt += 1
-            else:
-                even.next, next = node, node.next
-                even = even.next
-            node = next
-            number += 1
-        else:
-            if number % 2 != 0:
-                odd.next = node
-            else:
-                even.next = node
+        odd = head
+        even = head.next
+        even_head = head.next
 
-        result = odd_list.next
-        while cnt:
-            odd_list = odd_list.next
-            cnt -= 1
+        while even and even.next:
+            odd.next, even.next = odd.next.next, even.next.next
+            odd, even = odd.next, even.next
 
-        odd_list.next = even_list.next
-
-        return result
+        odd.next = even_head
+        return head
