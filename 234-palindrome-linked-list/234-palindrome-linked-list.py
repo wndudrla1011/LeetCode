@@ -9,21 +9,20 @@ class Solution(object):
         :type head: ListNode
         :rtype: bool
         """
-        q = []
+        slow = fast = head
+        rev = None
 
-        if not head:
-            return True
+        while fast and fast.next:
+            slow, fast = slow.next, fast.next.next
+            next, head.next = head.next, rev
+            rev, head = head, next
 
-        node = head
-        # transform to list
-        while node is not None:
-            # print(node.val)
-            q.append(node.val)
-            node = node.next
+        if fast:
+            slow = slow.next
 
-        # determine whether it is a palindrome or not
-        while len(q) > 1:
-            if q.pop(0) != q.pop():
+        while slow:
+            if rev.val != slow.val:
                 return False
+            slow, rev = slow.next, rev.next
 
         return True
