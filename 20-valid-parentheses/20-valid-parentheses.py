@@ -5,24 +5,16 @@ class Solution(object):
         :rtype: bool
         """
         stack = []
+        table = {
+            ')':'(',
+            '}':'{',
+            ']':'['
+        }
 
-        for elem in s:
-            if elem == "(" or elem == "[" or elem == "{":
-                stack.append(elem)
-            else:
-                if not stack:
-                    return False
-                else:
-                    if stack[-1] == "(" and elem == ")":
-                        stack.pop()
-                    elif stack[-1] == "{" and elem == "}":
-                        stack.pop()
-                    elif stack[-1] == "[" and elem == "]":
-                        stack.pop()
-                    else:
-                        return False
+        for char in s:
+            if char not in table:
+                stack.append(char)
+            elif not stack or table[char] != stack.pop():
+                return False
 
-        if not stack:
-            return True
-        else:
-            return False
+        return len(stack) == 0
