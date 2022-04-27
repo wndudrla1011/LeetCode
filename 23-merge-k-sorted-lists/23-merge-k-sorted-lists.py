@@ -9,20 +9,41 @@ class Solution(object):
         :type lists: List[ListNode]
         :rtype: ListNode
         """
-        root = result = ListNode(None)
-        heap = []
+        data = []
 
-        for i in range(len(lists)):
-            if lists[i]:
-                heapq.heappush(heap, (lists[i].val, i, lists[i]))
+        if len(lists) == 0:
+            return None
 
-        while heap:
-            node = heapq.heappop(heap)
-            idx = node[1]
-            result.next = node[2]
+        if len(lists) == 1:
+            return lists[0]
 
-            result = result.next
-            if result.next:
-                heapq.heappush(heap, (result.next.val, idx, result.next))
+        # lst -> ListNode
+        for lst in lists:
+            if lst == None:
+                continue
+                
+            data.append(lst.val)
+            # input lists[i+1:]
+            while lst.next:
+                lst = lst.next
+                data.append(lst.val)
 
-        return root.next
+        lists = ListNode()
+        # case: inputed data is configured of []
+        if len(data) == 0:
+            return None
+        data.sort()
+
+        for i in range(len(data)):
+            if i == 0:
+                lists.val = data[i]
+            else:
+                # store lists
+                node = lists
+                # if node.next is None, move a node's pointer to last position
+                while node.next:
+                    node = node.next
+                # add next data from the last position
+                node.next = ListNode(data[i])
+
+        return lists
