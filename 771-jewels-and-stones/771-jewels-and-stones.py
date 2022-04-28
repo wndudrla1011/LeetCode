@@ -5,15 +5,5 @@ class Solution(object):
         :type stones: str
         :rtype: int
         """
-        answer = 0
-
-        # default value = 0
-        freqs = collections.defaultdict(int)
-
-        for char in stones:
-            freqs[char] += 1
-
-        for char in jewels:
-            answer += freqs[char]
                 
-        return answer
+        return (sum(answer in jewels for answer in stones))
