@@ -5,12 +5,16 @@ class Solution(object):
         :type stones: str
         :rtype: int
         """
-        answer = 0
+        table, answer = {}, 0
 
-        counter = collections.Counter(stones)
+        for char in stones:
+            if char not in table:
+                table[char] = 1
+            else:
+                table[char] += 1
 
         for j in jewels:
-            if j in counter:
-                answer += counter[j]
+            if j in table:
+                answer += table[j]
                 
         return answer
