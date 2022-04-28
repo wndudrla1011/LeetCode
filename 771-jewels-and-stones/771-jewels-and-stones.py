@@ -10,7 +10,7 @@ class Solution(object):
         counter = collections.Counter(stones)
 
         for j in jewels:
-            if j in counter:
+            if j in counter.keys():
                 answer += counter[j]
                 
         return answer
