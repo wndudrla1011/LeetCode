@@ -5,16 +5,15 @@ class Solution(object):
         :type stones: str
         :rtype: int
         """
-        table, answer = {}, 0
+        answer = 0
+
+        # default value = 0
+        freqs = collections.defaultdict(int)
 
         for char in stones:
-            if char not in table:
-                table[char] = 1
-            else:
-                table[char] += 1
+            freqs[char] += 1
 
-        for j in jewels:
-            if j in table:
-                answer += table[j]
+        for char in jewels:
+            answer += freqs[char]
                 
         return answer
