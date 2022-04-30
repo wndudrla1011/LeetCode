@@ -5,15 +5,14 @@ class Solution(object):
         :type k: int
         :rtype: List[int]
         """
-        ctr = collections.Counter(nums)
-        avobe = []
+        freqs = collections.Counter(nums)
+        freqs_heap = []
 
-        ctr = ctr.most_common()
-        for i in range(len(ctr)):
-            if k:
-                avobe.append(ctr[i][0])
-            else:
-                break
-            k -= 1
+        for f in freqs:
+            heapq.heappush(freqs_heap, (-freqs[f], f))
+
+        topk = []
+        for _ in range(k):
+            topk.append(heapq.heappop(freqs_heap)[1])
                 
-        return avobe
+        return topk
