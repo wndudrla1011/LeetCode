@@ -5,6 +5,14 @@ class Solution(object):
         :type k: int
         :rtype: List[int]
         """
-        
-                
-        return list(zip(*collections.Counter(nums).most_common(k)))[0]
+        ctr = collections.Counter(nums)
+
+        avobe = []
+        for key, value in ctr.most_common():
+            if k:
+                avobe.append(key)
+            else:
+                break
+            k -= 1
+            
+        return avobe
