@@ -4,14 +4,17 @@ class Solution(object):
         :type s: str
         :rtype: int
         """
-        used = {}
-        max_length = start = 0
-        for index, char in enumerate(s):
-            if char in used and start <= used[char]:
-                start = used[char] + 1
-            else:
-                max_length = max(max_length, index - start + 1)
+        bucket, max_length = [], 0
 
-            used[char] = index
-        
+        for char in s:
+            if char not in bucket:
+                bucket.append(char)
+            else:
+                idx = bucket.index(char) + 1
+                while idx:
+                    bucket.pop(0)
+                    idx -= 1
+                bucket.append(char)
+            max_length = max(max_length, len(bucket))
+            
         return max_length
