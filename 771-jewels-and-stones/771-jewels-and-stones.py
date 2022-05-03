@@ -5,15 +5,16 @@ class Solution(object):
         :type stones: str
         :rtype: int
         """
-        answer = 0
+        table, answer = {}, 0
 
-        table = collections.defaultdict(int)
+        for char in stones:
+            if char not in table:
+                table[char] = 1
+            else:
+                table[char] += 1
 
-        for S in stones:
-            table[S] += 1
-
-        for J in jewels:
-            if table[J]:
-                answer += table[J]
+        for j in jewels:
+            if j in table:
+                answer += table[j]
                 
         return answer
