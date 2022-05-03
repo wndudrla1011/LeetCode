@@ -5,11 +5,15 @@ class Solution(object):
         :type stones: str
         :rtype: int
         """
-        counter = collections.Counter(stones)
+        answer = 0
 
-        result = 0
+        table = collections.defaultdict(int)
+
+        for S in stones:
+            table[S] += 1
+
         for J in jewels:
-            if counter[J]:
-                result += counter[J]
+            if table[J]:
+                answer += table[J]
                 
-        return result
+        return answer
