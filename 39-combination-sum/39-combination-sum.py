@@ -8,17 +8,22 @@ class Solution(object):
         result = []
 
 
-        def dfs(csum, index, path):
-            if csum < 0:
+        def dfs(elem, v):
+            if sum(elem) == target:
+                result.append(elem[:])
                 return
-            if csum == 0:
-                result.append(path)
+            elif sum(elem) > target:
                 return
 
-            for i in range(index, len(candidates)):
-                dfs(csum - candidates[i], i, path + [candidates[i]])
+
+            for i in range(v, len(candidates)):
+                if candidates[i] == 0:
+                    return
+                elem.append(candidates[i])
+                dfs(elem, i)
+                elem.pop()
 
 
-        dfs(target, 0, [])
+        dfs([], 0)
         
         return result
