@@ -6,7 +6,7 @@ class Solution(object):
         """
         graph = collections.defaultdict(list)
 
-        for a, b in sorted(tickets):
+        for a, b in sorted(tickets, reverse=True):
             graph[a].append(b)
 
         route = []
@@ -15,7 +15,7 @@ class Solution(object):
             # It is reachable?
             while graph[a]:
                 # searching next destination
-                dfs(graph[a].pop(0))
+                dfs(graph[a].pop())
             # Blocked destination
             route.append(a)
 
