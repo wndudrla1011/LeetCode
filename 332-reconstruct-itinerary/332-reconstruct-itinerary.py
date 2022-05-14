@@ -12,8 +12,11 @@ class Solution(object):
         route = []
 
         def dfs(a):
+            # It is reachable?
             while graph[a]:
+                # searching next destination
                 dfs(graph[a].pop(0))
+            # Blocked destination
             route.append(a)
 
 
