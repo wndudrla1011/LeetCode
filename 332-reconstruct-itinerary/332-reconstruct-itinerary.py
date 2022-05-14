@@ -6,16 +6,20 @@ class Solution(object):
         """
         graph = collections.defaultdict(list)
 
-        for a, b in sorted(tickets):
+        for a, b in sorted(tickets, reverse=True):
             graph[a].append(b)
 
-        route, stack = [], ['JFK']
-        while stack:
+        route = []
+
+        def dfs(a):
             # It is reachable?
-            while graph[stack[-1]]:
+            while graph[a]:
                 # searching next destination
-                stack.append(graph[stack[-1]].pop(0))
+                dfs(graph[a].pop())
             # Blocked destination
-            route.append(stack.pop())
+            route.append(a)
+
+
+        dfs('JFK')
 
         return route[::-1]
