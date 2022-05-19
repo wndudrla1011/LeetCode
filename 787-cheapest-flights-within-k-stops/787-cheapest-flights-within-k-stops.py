@@ -25,6 +25,7 @@ class Solution(object):
             # arrived dst
             if node == dst:
                 return cost
+            # pruning (don't go to visited node)
             if node not in visited or visited[node] > via:
                 visited[node] = via
                 # transfer k+1 times from src
