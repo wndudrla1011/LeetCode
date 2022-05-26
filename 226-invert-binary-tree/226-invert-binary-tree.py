@@ -10,17 +10,6 @@ class Solution(object):
         :type root: TreeNode
         :rtype: TreeNode
         """
-        queue = collections.deque([root])
-        # stack = collections.deque([root]) -> dfs
-
-        while queue:
-            # node = stack.pop() -> dfs
-            node = queue.popleft()
-
-            if node:
-                node.left, node.right = node.right, node.left
-
-                queue.append(node.left)
-                queue.append(node.right)
-
-        return root
+        if root:
+            root.left, root.right = self.invertTree(root.right), self.invertTree(root.left)
+            return root
