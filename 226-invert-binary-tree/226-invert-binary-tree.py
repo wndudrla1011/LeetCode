@@ -17,8 +17,8 @@ class Solution(object):
             if node is None:
                 return
 
-            left = dfs(node.left)
-            right = dfs(node.right)
+            dfs(node.left)
+            dfs(node.right)
 
             node.right, node.left = node.left, node.right
 
