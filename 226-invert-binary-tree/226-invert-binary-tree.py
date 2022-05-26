@@ -15,14 +15,12 @@ class Solution(object):
         
         def dfs(node):
             if node is None:
-                return -1
+                return
 
             left = dfs(node.left)
             right = dfs(node.right)
 
             node.right, node.left = node.left, node.right
-
-            return max(left, right) + 1
 
         dfs(root)
 
