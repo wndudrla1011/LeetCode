@@ -20,10 +20,7 @@ class Solution(object):
             left = dfs(node.left)
             right = dfs(node.right)
 
-            next_left, next_right = node.left, node.right
-            
-            node.left = next_right
-            node.right = next_left
+            node.right, node.left = node.left, node.right
 
             return max(left, right) + 1
 
