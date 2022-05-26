@@ -10,15 +10,17 @@ class Solution(object):
         :type root: TreeNode
         :rtype: TreeNode
         """
-        def dfs(node):
-            if node is None:
-                return
+        queue = collections.deque([root])
+        # stack = collections.deque([root]) -> dfs
 
-            dfs(node.left)
-            dfs(node.right)
+        while queue:
+            # node = stack.pop() -> dfs
+            node = queue.popleft()
 
-            node.right, node.left = node.left, node.right
+            if node:
+                node.left, node.right = node.right, node.left
 
-        dfs(root)
+                queue.append(node.left)
+                queue.append(node.right)
 
         return root
