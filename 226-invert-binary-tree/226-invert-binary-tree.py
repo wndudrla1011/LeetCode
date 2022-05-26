@@ -10,9 +10,6 @@ class Solution(object):
         :type root: TreeNode
         :rtype: TreeNode
         """
-        if root is None:
-            return
-        
         def dfs(node):
             if node is None:
                 return
