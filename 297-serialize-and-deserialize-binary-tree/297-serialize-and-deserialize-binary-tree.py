@@ -48,7 +48,7 @@ class Codec:
         nodes = data.split('#')
 
         # pop root value (except from zero index)
-        root = TreeNode(nodes[1])
+        root = TreeNode(int(nodes[1]))
         queue = collections.deque([root])
         # child node's start point
         index = 2
