@@ -13,16 +13,17 @@ class Solution(object):
         :type high: int
         :rtype: int
         """
-        if not root:
-            return
+        def dfs(root):
+            if not root:
+                return 0
+            
+            if root.val < low:
+                return self.rangeSumBST(root.right, low, high)
+            if root.val > high:
+                return self.rangeSumBST(root.left, low, high)
 
-        if root.val < low:
-            self.rangeSumBST(root.right, low, high)
-        if root.val > high:
-            self.rangeSumBST(root.left, low, high)
-        if root.val >= low and root.val <= high:
-            self.result += root.val
-            self.rangeSumBST(root.left, low, high)
-            self.rangeSumBST(root.right, low, high)
-
-        return self.result
+            return root.val + \
+                   self.rangeSumBST(root.left, low, high) + \
+                   self.rangeSumBST(root.right, low, high)
+        
+        return dfs(root)
