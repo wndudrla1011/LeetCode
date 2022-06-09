@@ -5,7 +5,6 @@
 #         self.left = left
 #         self.right = right
 class Solution(object):
-    result = 0
     def rangeSumBST(self, root, low, high):
         """
         :type root: TreeNode
