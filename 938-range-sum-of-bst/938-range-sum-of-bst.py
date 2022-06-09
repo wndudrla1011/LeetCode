@@ -13,15 +13,10 @@ class Solution(object):
         :type high: int
         :rtype: int
         """
-        def dfs(t):
-            if t:
-                dfs(t.left)
-                dfs(t.right)
-                if t.val >= low and t.val <= high:
-                    self.result += t.val
-
-            return t
-
-        dfs(root)
+        if root:
+            self.rangeSumBST(root.left, low, high)
+            self.rangeSumBST(root.right, low, high)
+            if root.val >= low and root.val <= high:
+                self.result += root.val
 
         return self.result
