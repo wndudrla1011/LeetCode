@@ -15,7 +15,7 @@ class Solution(object):
         stack, sum = [root], 0
 
         while stack:
-            node = stack.pop()
+            node = stack.pop(0)
             if node:
                 if node.val > low:
                     stack.append(node.left)
