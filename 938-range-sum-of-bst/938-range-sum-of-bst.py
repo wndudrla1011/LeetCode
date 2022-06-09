@@ -12,17 +12,16 @@ class Solution(object):
         :type high: int
         :rtype: int
         """
-        def dfs(root):
-            if not root:
-                return 0
-            
-            if root.val < low:
-                return self.rangeSumBST(root.right, low, high)
-            if root.val > high:
-                return self.rangeSumBST(root.left, low, high)
+        stack, sum = [root], 0
 
-            return root.val + \
-                   self.rangeSumBST(root.left, low, high) + \
-                   self.rangeSumBST(root.right, low, high)
-        
-        return dfs(root)
+        while stack:
+            node = stack.pop()
+            if node:
+                if node.val > low:
+                    stack.append(node.left)
+                if node.val < high:
+                    stack.append(node.right)
+                if low <= node.val <= high:
+                    sum += node.val
+
+        return sum
