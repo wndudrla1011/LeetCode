@@ -7,28 +7,20 @@
 import sys
 
 class Solution(object):
+    prev = -sys.maxsize
+    result = sys.maxsize
     def minDiffInBST(self, root):
         """
         :type root: TreeNode
         :rtype: int
         """
-        prev = -sys.maxsize
-        result = sys.maxsize
+        if root.left:
+            self.minDiffInBST(root.left)
 
-        stack = []
+        self.result = min(self.result, root.val - self.prev)
+        self.prev = root.val
 
-        node = root
-        
-        while stack or node:
-            while node:
-                stack.append(node)
-                node = node.left
-            
-            node = stack.pop()
-            
-            result = min(result, node.val - prev)
-            prev = node.val
-            
-            node = node.right
-            
-        return result
+        if root.right:
+            self.minDiffInBST(root.right)
+
+        return self.result
