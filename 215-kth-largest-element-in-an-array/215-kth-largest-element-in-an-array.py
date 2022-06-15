@@ -5,13 +5,9 @@ class Solution(object):
         :type k: int
         :rtype: int
         """
-        Q = []
-        result = []
+        heapq.heapify(nums)
 
-        for n in nums:
-            heapq.heappush(Q, -n)
+        for _ in range(len(nums) - k):
+            heapq.heappop(nums)
 
-        for _ in range(len(Q)):
-            result.append(-heapq.heappop(Q))
-
-        return result[k-1]
+        return heapq.heappop(nums)
