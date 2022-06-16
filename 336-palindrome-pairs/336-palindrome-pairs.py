@@ -18,7 +18,6 @@ class Trie:
             if self.is_palindrome(word[0:len(word) - i]):
                 node.palindrome_word_ids.append(index)
             node = node.children[char]
-            node.val = char
         node.word_id = index
 
     def search(self, index, word):
@@ -39,8 +38,8 @@ class Trie:
         if node.word_id >= 0 and node.word_id != index:
             result.append([index, node.word_id])
 
-        for palindrome_word_id in node.palindrome_word_ids:
-            result.append([index, palindrome_word_id])
+        for p in node.palindrome_word_ids:
+            result.append([index, p])
 
         return result
         
@@ -53,10 +52,11 @@ class Solution(object):
                 
         trie = Trie()
 
+        results = []
+        
         for i, word in enumerate(words):
             trie.insert(i, word) 
             
-        results = []
         for i, word in enumerate(words):
             results.extend(trie.search(i, word))
                 
